@@ -1,0 +1,6 @@
+[submodule "pico-sdk"]
+	path = usb/usb_printer/lib/pico-sdk
+	url = git@github.com:raspberrypi/pico-sdk.git
+[submodule "FreeRTOS-Kernel"]
+	path = usb/usb_printer/lib/FreeRTOS-Kernel
+	url = git@github.com:FreeRTOS/FreeRTOS-Kernel.git

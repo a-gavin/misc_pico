@@ -1,0 +1,9 @@
+target_sources(usb_printer
+    PRIVATE
+        usb_printer.c
+        myAssert.c
+)
+target_include_directories(usb_printer
+    PRIVATE
+        include
+)
