@@ -7,3 +7,8 @@ target_include_directories(usb_printer
     PRIVATE
         include
 )
+
+target_include_directories(freertos_usb_printer PUBLIC
+    PUBLIC
+        include
+)        

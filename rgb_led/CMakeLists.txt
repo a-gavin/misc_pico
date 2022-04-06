@@ -1,0 +1,5 @@
+add_subdirectory(fade_in_out)
+add_subdirectory(fade_in_out_freertos)
+add_subdirectory(incremental_inc_freertos)
+add_subdirectory(lcd_i2c)
+add_subdirectory(potentiometer)
