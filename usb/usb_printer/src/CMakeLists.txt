@@ -1,6 +1,7 @@
 target_sources(usb_printer
     PRIVATE
         usb_printer.c
+        usb_descriptors.c
         myAssert.c
 )
 target_include_directories(usb_printer
@@ -11,4 +12,4 @@ target_include_directories(usb_printer
 target_include_directories(freertos_usb_printer PUBLIC
     PUBLIC
         include
-)        
+)
