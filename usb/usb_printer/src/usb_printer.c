@@ -58,10 +58,11 @@ int main(void) {
 
   // soft timer for blinky
   blinky_tm = xTimerCreate("blinky", pdMS_TO_TICKS(BLINK_NOT_MOUNTED), true, NULL, led_blinky_cb);
+  myAssert(blinky_tm != NULL);
   xTimerStart(blinky_tm, 0);
 
   // Create a task for tinyusb device stack
-  (void) xTaskCreate(usb_device_task, "usbd", USBD_STACK_SIZE, NULL, configMAX_PRIORITIES-1, NULL);
+  (void) xTaskCreate(usb_device_task, "usbd", USBD_STACK_SIZE, NULL, configMAX_PRIORITIES-2, NULL);
 
   // Create HID task
   //(void) xTaskCreate(hid_task, "hid", HID_STACK_SIZE, NULL, configMAX_PRIORITIES-2, NULL);
@@ -154,7 +155,6 @@ void tud_hid_set_report_cb(uint8_t itf, uint8_t report_id, hid_report_type_t rep
 void led_blinky_cb(TimerHandle_t xTimer) {
   (void) xTimer;
   static bool led_state = false;
-  // TODO: WIP determine why LED not initialized/read to
   board_led_write(led_state);
   led_state = 1 - led_state; // toggle
 }
