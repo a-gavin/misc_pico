@@ -1,5 +1,5 @@
 # Miscellaneous Pico Projects
 
-Repository includes code for miscellaneous C-based Raspberry Pi Pico projects I have created.
+Repository includes code for miscellaneous C-based Raspberry Pi Pico projects I have created in exploring embedded development.
 
-Requires environment variables ``PICO_SDK_PATH`` and ``FREE_RTOS_PATH`` defined, each pointing to the base directory of the desired Pico SDK and FreeRTOS SDK. Pico SDK version is 1.3.0 and FreeRTOS version is 202112.00.
+Assumes CMake and GNU Arm Embedded toolchain compatible with Pico SDK v1.3.0+ already installed. FreeRTOS Kernel and Raspberry Pi Pico (and consequently TinyUSB) are submodules of the project.
