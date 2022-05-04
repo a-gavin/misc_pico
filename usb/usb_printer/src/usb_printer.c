@@ -32,22 +32,16 @@
 // FreeRTOS heap
 uint8_t ucHeap[configTOTAL_HEAP_SIZE];
 
-// static timer
+// Blinky timer
 StaticTimer_t blinky_tmdef;
 TimerHandle_t blinky_tm;
 
-// static task
+// USB Device task
 StackType_t  usb_device_stack[USBD_STACK_SIZE];
 StaticTask_t usb_device_taskdef;
 
-// static task for hid
-//#define HID_STACK_SIZE      configMINIMAL_STACK_SIZE
-//StackType_t  hid_stack[HID_STACK_SIZE];
-//StaticTask_t hid_taskdef;
-
 void led_blinky_cb(TimerHandle_t xTimer);
 void usb_device_task(void* param);
-//void hid_task(void* params);
 
 //--------------------------------------------------------------------+
 // Main
@@ -63,9 +57,6 @@ int main(void) {
 
   // Create a task for tinyusb device stack
   (void) xTaskCreate(usb_device_task, "usbd", USBD_STACK_SIZE, NULL, configMAX_PRIORITIES-2, NULL);
-
-  // Create HID task
-  //(void) xTaskCreate(hid_task, "hid", HID_STACK_SIZE, NULL, configMAX_PRIORITIES-2, NULL);
 
   vTaskStartScheduler();
 
@@ -140,13 +131,14 @@ uint16_t tud_hid_get_report_cb(uint8_t itf, uint8_t report_id, hid_report_type_t
 // received data on OUT endpoint ( Report ID = 0, Type = 0 )
 void tud_hid_set_report_cb(uint8_t itf, uint8_t report_id, hid_report_type_t report_type, uint8_t const* buffer, uint16_t bufsize)
 {
-  // This example doesn't use multiple report and report ID
   (void) itf;
   (void) report_id;
   (void) report_type;
+  (void) buffer;
+  (void) bufsize;
 
-  // echo back anything we received from host
-  tud_hid_report(0, buffer, bufsize);
+  static char *to_send = "RPI-PICO\n";
+  tud_hid_report(0, to_send, strlen(to_send));
 }
 
 //--------------------------------------------------------------------+
